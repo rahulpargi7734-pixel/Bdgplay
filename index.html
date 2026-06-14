@@ -1,303 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Verification Code (Isse site Google par live rahegi) -->
+    <meta name="google-site-verification" content="yHBmUE1zOkfvEc-GMwaWVkPJcH84OXKjdQmTIyo6NK0" />
     
-    <!-- ================= SEO META TAGS (Google Rank Hack) ================= -->
-    <title>Bdg Play Official - Register, Login & Official App Link</title>
-    <meta name="description" content="Welcome to the Bdg Play official community website. Register and Login to get the latest updates. Join our Telegram group now to get the official Bdg Play app download link before anyone else!">
-    <meta name="keywords" content="bdg play, bdg play official, bdg play link, bdg play apk, bdg play register, bdg play login, bdgplay download, bdg play online game">
-    <meta name="author" content="Bdg Play Team">
-    <meta name="robots" content="index, follow">
+    <title>BDG Play - Official Updates & Notification</title>
+    <meta name="description" content="बीडीजी प्ले का ऑफिशियल लिंक अभी तक नहीं आया है. सही और सुरक्षित रजिस्ट्रेशन और लॉगिन लिंक के लिए हमारे टेलीग्राम चैनल से जुड़ें." />
     
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <style>
-        /* CSS Styling for Premium Dark Look */
-        :root {
-            --primary-color: #ffcc00;
-            --tg-color: #0088cc;
-            --bg-dark: #121212;
-            --card-bg: #1e1e1e;
-            --text-color: #ffffff;
-        }
-
-        * {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding-bottom: 80px; /* Space for sticky bottom button */
-        }
-
-        /* Header & Navigation */
-        header {
-            background: #000000;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-transform: uppercase;
-        }
-
-        .auth-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            padding: 8px 18px;
-            border-radius: 5px;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 14px;
-        }
-
-        .btn-login {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-login:hover {
-            background: var(--primary-color);
-            color: #000;
-        }
-
-        .btn-register {
-            background: var(--primary-color);
-            color: #000;
-        }
-
-        .btn-register:hover {
-            background: #fff;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(18,18,18,1)), url('https://via.placeholder.com/1200x400') no-repeat center/cover;
-        }
-
-        .hero h1 {
-            font-size: 36px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 16px;
-            max-width: 600px;
-            margin: 0 auto 25px;
-            color: #ccc;
-        }
-
-        /* Telegram Announcement Box */
-        .telegram-box {
-            background: #1a273a;
-            border-left: 5px solid var(--tg-color);
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 800px;
-            margin: 30px auto;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-
-        .telegram-box h3 {
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .btn-telegram {
-            background: var(--tg-color);
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-            font-size: 16px;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .btn-telegram:hover {
-            background: #006699;
-            transform: scale(1.05);
-        }
-
-        /* Detailed Content Section (For SEO Google Ranking) */
-        .content-section {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .content-section h2 {
-            color: var(--primary-color);
-            margin-top: 30px;
-            margin-bottom: 15px;
-            font-size: 24px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 5px;
-        }
-
-        .content-section p {
-            margin-bottom: 15px;
-            color: #ddd;
-            font-size: 15px;
-            text-align: justify;
-        }
-
-        .features-list {
-            margin-left: 20px;
-            margin-bottom: 20px;
-            color: #ddd;
-        }
-
-        .features-list li {
-            margin-bottom: 8px;
-        }
-
-        /* Sticky Bottom Telegram Button */
-        .sticky-bottom {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #050505;
-            padding: 12px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
-            z-index: 999;
-            border-top: 1px solid #222;
+            min-height: 100vh;
+            color: #333;
         }
-
-        .sticky-btn {
-            width: 100%;
+        .container {
+            background-color: #ffffff;
             max-width: 500px;
-            background: var(--tg-color);
-            color: #fff;
+            width: 90%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             text-align: center;
-            padding: 12px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
+        }
+        .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .alert-box {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-bottom: 25px;
             font-size: 16px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            animation: pulse 2s infinite;
+            line-height: 1.5;
         }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); box-shadow: 0 0 15px rgba(0, 136, 204, 0.6); }
-            100% { transform: scale(1); }
+        .info-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 30px;
         }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            header { padding: 15px 3%; }
-            .logo { font-size: 20px; }
-            .hero h1 { font-size: 28px; }
-            .btn { padding: 6px 12px; font-size: 12px; }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px 0;
+            margin: 12px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        .btn-telegram {
+            background-color: #0088cc;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 136, 204, 0.3);
+        }
+        .btn-telegram:hover {
+            background-color: #0077b3;
+        }
+        /* Buttons pending state */
+        .btn-disabled {
+            background-color: #e0e0e0;
+            color: #888888;
+            cursor: not-allowed;
+            border: 1px dashed #cccccc;
+        }
+        .footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #888;
         }
     </style>
 </head>
 <body>
 
-    <!-- ================= HEADER SECTION ================= -->
-    <header>
-        <div class="logo">Bdg Play</div>
-        <div class="auth-buttons">
-            <!-- Jab official link aayega, tab '#' hata kar wahan apna register/login link daal dena -->
-            <a href="https://t.me/bdgplayoffiiciall" target="_blank" class="btn btn-login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
-            <a href="https://t.me/bdgplayoffiiciall" target="_blank" class="btn btn-register"><i class="fa-solid fa-user-plus"></i> Register</a>
-        </div>
-    </header>
-
-    <!-- ================= HERO SECTION ================= -->
-    <section class="hero">
-        <h1>Bdg Play Official Community Platform</h1>
-        <p>Your ultimate destination for the upcoming premium Android gaming experience. Get ready to experience high-speed action and rewards!</p>
-    </section>
-
-    <!-- ================= TELEGRAM BOX ================= -->
-    <div class="telegram-box">
-        <h3>🚨 Official Link Notification! 🚨</h3>
-        <p>Bdg Play ka official app aur web link abhi tak public nahi kiya gaya hai. Sabse pehle official, safe aur 100% working login link paane ke liye abhi hamara Telegram Group join karein!</p>
-        <!-- 👇 AAPKA TELEGRAM LINK HERE -->
-        <a href="https://t.me/bdgplayoffiiciall" target="_blank" class="btn btn-telegram">
-            <i class="fa-brands fa-telegram"></i> Join Our Telegram Channel
-        </a>
+<div class="container">
+    <div class="logo-text">BDG PLAY</div>
+    
+    <!-- Important Notification -->
+    <div class="alert-box">
+        ⚠️ अभी तक बीडीजी प्ले (BDG Play) का कोई ऑफिशियल लिंक नहीं आया है। 
     </div>
+    
+    <p class="info-text">
+        आगे से कंपनी से जब भी ऑफिशियल लिंक आ जाएगा, सबसे पहले हमारे टेलीग्राम चैनल पर अपडेट कर दिया जाएगा। किसी भी फेक लिंक या फ्रॉड से बचें और सही जानकारी के लिए तुरंत टेलीग्राम ज्वाइन करें।
+    </p>
 
-    <!-- ================= DETAILED SEO CONTENT ================= -->
-    <main class="content-section">
-        <h2>What is Bdg Play?</h2>
-        <p>Bdg Play is an upcoming premium Android gaming and entertainment platform designed for gamers who want smooth gameplay and exciting interactive challenges. The platform focuses on user security, fast servers, and a beautiful user interface that sets it apart from other traditional apps in the market.</p>
-
-        <h2>Why is the Official Bdg Play Link Not Out Yet?</h2>
-        <p>The developers of Bdg Play are currently running internal beta tests to ensure that when the platform goes live, it can handle thousands of concurrent users without any lag. To avoid fake duplicates, phishing sites, and modified untrusted APKs, the official launch links will be shared through verified community channels first.</p>
-
-        <h2>How to Register and Login on Bdg Play?</h2>
-        <p>Once the registration opens officially, users will be able to sign up instantly using their Mobile Number or Email verification. The official steps will include:</p>
-        <ul class="features-list">
-            <li>Visiting the verified Bdg Play login portal.</li>
-            <li>Clicking on the 'Register' button at the top right.</li>
-            <li>Entering your details and secure password.</li>
-            <li>Verifying via OTP to secure your wallet and game account.</li>
-        </ul>
-
-        <h2>Key Features of Bdg Play App</h2>
-        <p>Bdg Play brings massive updates to the gaming genre. Here is what you can expect from the original build:</p>
-        <ul class="features-list">
-            <li><strong>Ultra Fast Servers:</strong> Zero lag during massive traffic intervals.</li>
-            <li><strong>Instant Support:</strong> 24/7 dedicated helper bots for system queries.</li>
-            <li><strong>Secure Transactions:</strong> Encrypted gateways for absolute financial and data privacy.</li>
-            <li><strong>Exclusive Early-Bird Rewards:</strong> Special bonuses for users who join the official platform on launch day.</li>
-        </ul>
-
-        <h2>Stay Safe From Fake Bdg Play Websites</h2>
-        <p>Since the demand for Bdg Play is very high, many fake websites are trying to steal user login details. Do not trust random download links or unauthorized APK files. Always make sure to source your links from our official telegram community to keep your device safe.</p>
-    </main>
-
-    <!-- ================= STICKY BOTTOM TELEGRAM BUTTON ================= -->
-    <div class="sticky-bottom">
-        <!-- 👇 AAPKA TELEGRAM LINK HERE BHI -->
-        <a href="https://t.me/bdgplayoffiiciall" target="_blank" class="sticky-btn">
-            <i class="fa-brands fa-telegram"></i> Official Link Ke Liye Telegram Join Karein!
-        </a>
+    <!-- Telegram Button (Aapka Link Yahan Add Ho Gaya Hai) -->
+    <a href="https://t.me/bdgplayoffiiciall" class="btn btn-telegram" target="_blank">📢 Join Official Telegram Channel</a>
+    
+    <!-- Registration & Login Buttons -->
+    <a href="#" class="btn btn-disabled" onclick="return false;">🔐 Registration (Coming Soon)</a>
+    <a href="#" class="btn btn-disabled" onclick="return false;">🔑 Login Website (Coming Soon)</a>
+    
+    <div class="footer">
+        © 2026 BDG Play Updates. All Rights Reserved.
     </div>
+</div>
 
 </body>
 </html>
