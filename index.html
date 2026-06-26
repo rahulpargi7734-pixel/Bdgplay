@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BDG Play Login - Official BDG Game App 2026</title>
-    <meta name="description" content="BDG Play is a secure online gaming platform to play Wingo, K3, 5D, Aviator and color prediction games. Access BDG Game Log and BDG Play Login 2026.">
+    <title>BDG Play Login - Official Premium App 2026</title>
+    <meta name="description" content="BDG Play is a secure online gaming platform to play Wingo, K3, 5D, Aviator and color prediction games. Access BDG Play Login 2026.">
     
     <!-- FontAwesome for Premium Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* Premium Gold & Cosmic Dark Palette inspired by 1000085293.jpg */
         :root {
-            --primary-grad: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
-            --btn-grad: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%);
+            --gold-grad: linear-gradient(90deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            --gold-solid: #f3c66f;
+            --gold-glow: rgba(243, 198, 111, 0.2);
+            --dark-bg: #0b0b0f;
+            --card-bg: #131419;
+            --sidebar-bg: #0e0f13;
+            --border-color: #24211a; /* Subtle golden-dark tint border */
+            --text-color: #ffffff;
+            --text-muted: #a5a5b5;
             --accent-green: #00e676;
             --tg-blue: #229ED9;
-            --gold-grad: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
-            --dark-bg: #0f0f14;
-            --card-bg: #171722;
-            --border-color: #262636;
-            --text-color: #ffffff;
-            --text-muted: #a1a1b5;
+            --alert-red: #ff3333;
         }
 
         * {
@@ -34,13 +37,14 @@
             background-color: var(--dark-bg);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a { text-decoration: none; color: inherit; }
 
         /* Navbar Layout */
         header {
-            background: rgba(23, 23, 34, 0.95);
+            background: rgba(19, 20, 25, 0.95);
             padding: 15px 5%;
             position: sticky;
             top: 0;
@@ -50,17 +54,36 @@
             justify-content: space-between;
             align-items: center;
             backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Menu Toggle Button */
+        .menu-toggle {
+            font-size: 22px;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.3s;
+        }
+        .menu-toggle:hover { color: var(--gold-solid); }
 
         .logo {
             font-size: 24px;
             font-weight: 800;
-            background: var(--btn-grad);
+            background: var(--gold-grad);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: flex;
             align-items: center;
             gap: 8px;
+            text-shadow: 0 0 10px rgba(252, 246, 186, 0.2);
         }
 
         .nav-buttons .btn {
@@ -75,10 +98,99 @@
             text-align: center;
         }
 
-        .btn-login { background: transparent; color: #fff; border: 2px solid #fff !important; }
-        .btn-register { background: var(--btn-grad); color: #fff; box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4); }
-        .btn-login:hover { background: #fff; color: #000; }
-        .btn-register:hover { transform: translateY(-2px); }
+        .btn-login { background: transparent; color: #fff; border: 2px solid var(--gold-solid) !important; }
+        .btn-register { background: var(--gold-grad); color: #000; font-weight: 700; box-shadow: 0 4px 15px var(--gold-glow); }
+        .btn-login:hover { background: var(--gold-grad); color: #000; border-color: transparent !important; }
+        .btn-register:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(251, 245, 183, 0.4); }
+
+        /* ================= SIDE MENU (SIDEBAR) STYLES ================= */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100%;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            z-index: 2500;
+            transition: all 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
+            box-shadow: 5px 0 25px rgba(0,0,0,0.7);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-close {
+            font-size: 24px;
+            color: var(--text-muted);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .sidebar-close:hover { color: #fff; }
+
+        .sidebar-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-item a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            color: #d1d1e0;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .sidebar-item a i {
+            font-size: 18px;
+            width: 25px;
+            text-align: center;
+        }
+
+        .sidebar-item a:hover {
+            background: rgba(243, 198, 111, 0.1);
+            color: var(--gold-solid);
+        }
+
+        .sidebar-item.active-link a {
+            background: var(--gold-grad);
+            color: #000;
+            font-weight: 600;
+        }
+
+        /* Sidebar Overlay */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+            z-index: 2400;
+        }
+        .sidebar-overlay.active { display: block; }
 
         /* Main Container */
         .container {
@@ -87,18 +199,27 @@
             padding: 0 20px;
         }
 
-        /* Hero Landing Box */
+        /* Hero Landing Box (Smooth Space Background Metallic Theme) */
         .hero-section {
-            background: linear-gradient(135deg, #2b1055, #7597de);
+            background: radial-gradient(circle at center, #1c1d24 0%, #0d0e12 100%);
+            border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 40px 30px;
             text-align: center;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 0 20px rgba(243, 198, 111, 0.05);
         }
 
-        .hero-section h1 { font-size: 32px; font-weight: 700; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-        .hero-section p { font-size: 16px; margin-bottom: 25px; color: #f0f0f0; }
+        .hero-section h1 { 
+            font-size: 34px; 
+            font-weight: 800; 
+            margin-bottom: 15px; 
+            background: var(--gold-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .hero-section p { font-size: 16px; margin-bottom: 25px; color: #e1e1eb; }
 
         .cta-group {
             display: flex;
@@ -117,23 +238,43 @@
             gap: 10px;
             border: none;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
 
-        .btn-play-game { background: var(--accent-green); color: #000; }
+        .btn-play-game { background: var(--gold-grad); color: #000; box-shadow: 0 4px 20px var(--gold-glow); }
         .btn-join-tg { background: var(--tg-blue); color: #fff; }
-        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
+        .btn-play-game:hover { box-shadow: 0 8px 25px rgba(251, 245, 183, 0.3); }
 
-        /* Algorithmic Risk Disclaimer */
+        /* Risk Disclaimer */
         .risk-disclaimer {
-            background: rgba(255, 75, 43, 0.1);
+            background: rgba(255, 75, 43, 0.05);
             border-left: 5px solid #ff4b2b;
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 35px;
             font-size: 14px;
             color: #ff8a75;
+        }
+
+        /* Custom Alert Danger Box */
+        .danger-alert-box {
+            background: rgba(255, 51, 51, 0.04);
+            border: 2px dashed rgba(255, 51, 51, 0.4);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .danger-alert-box h2 {
+            color: #ff4d4d !important;
+            border-bottom: 1px solid rgba(255, 51, 51, 0.15) !important;
+        }
+        .danger-alert-box p {
+            font-size: 15px;
+            color: #ffcccc !important;
+            margin-bottom: 20px;
         }
 
         /* Card Section Layout */
@@ -143,12 +284,15 @@
             padding: 30px;
             border-radius: 16px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+            position: relative;
         }
 
         .card h2 {
             font-size: 22px;
-            color: #ff416c;
+            background: var(--gold-grad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
@@ -156,8 +300,14 @@
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
         }
+        
+        /* FontAwesome adjustment for gradient heading icons */
+        .card h2 i {
+            color: var(--gold-solid);
+            -webkit-text-fill-color: var(--gold-solid);
+        }
 
-        .card h3 { color: #fda085; margin: 20px 0 10px 0; }
+        .card h3 { color: var(--gold-solid); margin: 20px 0 10px 0; }
         .card p { margin-bottom: 15px; color: #d1d1e0; }
 
         /* Premium Tables */
@@ -165,13 +315,14 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            background: #1e1e2d;
+            background: #17181f;
             border-radius: 10px;
             overflow: hidden;
+            border: 1px solid var(--border-color);
         }
 
         th, td { padding: 14px 18px; text-align: left; }
-        th { background: #28283d; color: var(--accent-green); font-weight: 600; }
+        th { background: #1e202a; color: var(--gold-solid); font-weight: 600; border-bottom: 2px solid var(--border-color); }
         td { border-bottom: 1px solid var(--border-color); color: #e1e1ed; }
         tr:last-child td { border: none; }
 
@@ -180,27 +331,25 @@
         li { margin-bottom: 12px; color: #e1e1ed; }
         strong { color: #fff; }
 
-        /* Image Display Boxes */
-        .image-placeholder-box {
-            background: #1c1c28;
-            border: 2px dashed #44445c;
+        /* Image Containers */
+        .app-screenshot-box {
+            background: #0d0e12;
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            height: 220px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-muted);
+            width: 100%;
+            overflow: hidden;
             margin: 25px 0;
-            cursor: pointer;
-            transition: 0.3s;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
         }
-        .image-placeholder-box:hover { border-color: #ff416c; background: #222233; }
-        .image-placeholder-box i { font-size: 40px; margin-bottom: 10px; color: #ff416c; }
+        .app-screenshot-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
         /* Copy Code Box */
         .code-box {
-            background: #101017;
+            background: #0d0e12;
             padding: 15px;
             border-radius: 8px;
             display: flex;
@@ -210,107 +359,34 @@
             margin: 15px 0;
         }
         .copy-btn {
-            background: var(--btn-grad);
+            background: var(--gold-grad);
             border: none;
             padding: 6px 15px;
-            color: #fff;
+            color: #000;
             border-radius: 4px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
+            transition: opacity 0.2s;
         }
+        .copy-btn:hover { opacity: 0.9; }
 
         /* FAQ Accordion Item style */
         .faq-item {
-            background: #1e1e2d;
+            background: #17181f;
             padding: 15px 20px;
             border-radius: 8px;
             margin-bottom: 12px;
-            border-left: 3px solid #ff416c;
+            border-left: 3px solid var(--gold-solid);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
         .faq-item h4 { font-size: 16px; color: #fff; margin-bottom: 5px; }
         .faq-item p { color: var(--text-muted); margin: 0; }
 
-        /* Modals Structure */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-card {
-            background: var(--card-bg);
-            border: 1px solid #ff416c;
-            padding: 35px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 420px;
-            position: relative;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(255, 65, 108, 0.2);
-            animation: modalSlide 0.3s ease-out;
-        }
-
-        @keyframes modalSlide { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        .modal-close {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 28px;
-            cursor: pointer;
-            color: var(--text-muted);
-        }
-        .modal-close:hover { color: #fff; }
-
-        .modal-card h3 { font-size: 24px; margin-bottom: 25px; color: #fff; }
-        .modal-card input {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 16px;
-            border-radius: 10px;
-            border: 1px solid #2a2a3a;
-            background: #0f0f14;
-            color: #fff;
-            outline: none;
-        }
-        .modal-card input:focus { border-color: #ff416c; }
-        .modal-submit {
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            border: none;
-            background: var(--btn-grad);
-            color: #fff;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.3);
-            margin-bottom: 15px;
-            display: block;
-            text-align: center;
-        }
-
-        .modal-tg-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: var(--tg-blue);
-            color: #fff;
-            padding: 10px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
         /* Footer Layout */
         footer {
-            background: #09090d;
+            background: #060608;
             border-top: 1px solid var(--border-color);
             padding: 40px 20px;
             text-align: center;
@@ -326,17 +402,79 @@
             gap: 20px;
             flex-wrap: wrap;
         }
-        .keyword-directory a { color: #ff416c; font-weight: 600; }
+        .keyword-directory a { color: var(--gold-solid); font-weight: 600; }
         .keyword-directory a:hover { text-decoration: underline; }
+
+        /* Telegram Premium Showcase Box */
+        .community-box {
+            background: radial-gradient(circle at top, #1b1d26 0%, #111218 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .community-box h3 { color: #fff; font-size: 22px; margin-bottom: 15px; }
+        .community-box p { color: #d1d1e0; font-size: 15px; margin-bottom: 8px; }
+        .quote-text {
+            font-style: italic;
+            color: var(--gold-solid) !important;
+            font-weight: 600;
+            background: rgba(243, 198, 111, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 20px 0 !important;
+            border: 1px dashed rgba(243, 198, 111, 0.2);
+        }
     </style>
 </head>
 <body>
 
+    <!-- SIDE MENU (SIDEBAR) PANEL -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo"><i class="fa-solid fa-gamepad"></i> BDG Play</div>
+            <button class="sidebar-close" onclick="toggleSidebar(false)"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-item active-link">
+                <a href="https://bdg6.cc//#/register?invitationCode=1854121706894" target="_blank">
+                    <i class="fa-solid fa-house"></i> Home Dashboard
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="https://bdg6.cc//#/register?invitationCode=1854121706894" target="_blank">
+                    <i class="fa-solid fa-right-to-bracket"></i> BDG Play Login
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="https://bdg6.cc//#/register?invitationCode=1854121706894" target="_blank">
+                    <i class="fa-solid fa-user-plus"></i> BDG Play Register
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="https://t.me/bdgplayoffiiciall" target="_blank" style="color: var(--tg-blue);">
+                    <i class="fa-brands fa-telegram"></i> Telegram Channel
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="https://bdg6.cc//#/register?invitationCode=1854121706894" target="_blank">
+                    <i class="fa-solid fa-download"></i> Download APK App
+                </a>
+            </li>
+        </ul>
+    </nav>
+
     <!-- Header Navigation Platform Menu -->
     <header>
-        <div class="logo"><i class="fa-solid fa-gamepad"></i> BDG Play</div>
+        <div class="header-left">
+            <!-- Hamburger Menu Trigger -->
+            <button class="menu-toggle" onclick="toggleSidebar(true)"><i class="fa-solid fa-bars"></i></button>
+            <div class="logo"><i class="fa-solid fa-gamepad"></i> BDG Play</div>
+        </div>
         <div class="nav-buttons">
-            <!-- यहाँ भी रीडायरेक्ट लिंक लगा दिया है -->
             <a href="https://bdg6.cc//#/register?invitationCode=1854121706894" target="_blank" class="btn btn-login">BDG Play Login</a>
             <a href="https://bdg6.cc//#/register?invitationCode=1854121706894" target="_blank" class="btn btn-register">BDG Play Register</a>
         </div>
@@ -349,14 +487,50 @@
             <h1>BDG Play Login</h1>
             <p>BDG Play is a secure online gaming platform to play Wingo, K3, 5D, Aviator and color prediction games and earn exciting rewards. Enjoy fast gameplay, easy login, for prediction-based games while winning real rewards. It blends entertainment with opportunity. In BDG Play, test your luck and skills through easy-to-play games and earn real rewards exciting prizes.</p>
             <div class="cta-group">
-                <a href="https://bdg6.cc//#/register?invitationCode=1854121706894" target="_blank" class="cta-btn btn-play-game"><i class="fa-solid fa-circle-play"></i> Play BDG Game Online</a>
+                <a href="https://bdg6.cc//#/register?invitationCode=1854121706894" target="_blank" class="cta-btn btn-play-game"><i class="fa-solid fa-circle-play"></i> Play Online Now</a>
                 <a href="https://t.me/bdgplayoffiiciall" target="_blank" class="cta-btn btn-join-tg"><i class="fa-brands fa-telegram"></i> Join Official Telegram</a>
             </div>
         </div>
 
-        <!-- Algorithmic Disclaimer Box -->
-        <div class="risk-disclaimer">
-            <i class="fa-solid fa-triangle-exclamation"></i> <strong>BDG Play Register Notice:</strong> It is not a skill-based earning platform. It works on algorithmic results, which means you can win money but also lose it quickly. Play responsibly and only with small amounts.
+        <!-- PHOTO 1: FRONT WEBSITE DISPLAY PLACEHOLDER -->
+        <div class="app-screenshot-box">
+            <img src="1000085294.jpg" alt="BDG Play Official Website Home Interface Overview">
+        </div>
+
+        <!-- PHOTO 2: CAUTION ALERT BOX WITH DYNAMIC TELEGRAM CTA -->
+        <div class="danger-alert-box">
+            <h2><i class="fa-solid fa-circle-exclamation"></i> सावधान रहें - महत्वपूर्ण सूचना!</h2>
+            <p>जैसे कि मैंने बताया कि ऐप का ऑफिशियल लिंक अभी तक हर जगह उपलब्ध नहीं है, इसलिए फेक वेबसाइट्स से पूरी तरह सावधान रहें। नीचे दिए गए ऑफिशियल टेलीग्राम चैनल को जॉइन करके ही सही और सेफ प्लेटफॉर्म एक्सेस करें।</p>
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="https://t.me/bdgplayoffiiciall" target="_blank" class="cta-btn btn-join-tg" style="padding: 12px 30px; font-size: 15px;">
+                    <i class="fa-brands fa-telegram"></i> Join Official Telegram Support
+                </a>
+            </div>
+        </div>
+
+        <!-- PHOTO 3: PRE-LAUNCH COMMUNITY ANNOUNCEMENT HUB -->
+        <div class="community-box">
+            <div class="logo" style="justify-content: center; font-size: 26px; margin-bottom: 15px;"><i class="fa-solid fa-bolt"></i> BDG PLAY OFFICIAL COMMUNITY</div>
+            <h3>🔥 कुछ बड़ा आने वाला है...! 🔥</h3>
+            <p>हर दिन वही पुराने प्लेटफॉर्म देखकर थक गए हो? अब तैयार हो जाओ एक नए अनुभव के लिए! 💎</p>
+            <p>⚡ <strong>BDG PLAY</strong> जल्द ही लॉन्च होने वाला है।</p>
+            <div style="margin: 15px 0; text-align: left; display: inline-block;">
+                <p><i class="fa-solid fa-square-check" style="color:var(--accent-green);"></i> बेहतर अपडेट्स</p>
+                <p><i class="fa-solid fa-square-check" style="color:var(--accent-green);"></i> मजबूत कम्युनिटी</p>
+                <p><i class="fa-solid fa-square-check" style="color:var(--accent-green);"></i> नए अवसर</p>
+                <p><i class="fa-solid fa-square-check" style="color:var(--accent-green);"></i> शानदार सरप्राइज</p>
+            </div>
+            <p style="color: var(--text-muted);">🏆 शुरुआत से जुड़ने वाले सदस्य हमेशा एक कदम आगे रहते हैं।</p>
+            <p>⏳ <strong>Coming Soon...</strong> आज ही चैनल जॉइन करें और सबसे पहले सभी अपडेट प्राप्त करें।</p>
+            
+            <p class="quote-text">🚀 "जो लोग मौके का इंतजार करते हैं, वो पीछे रह जाते हैं... जो लोग मौके से पहले तैयार होते हैं, वही जीतते हैं!" 🚀</p>
+            
+            <div class="app-screenshot-box" style="max-width: 500px; margin: 20px auto;">
+                <img src="1000085291.jpg" alt="BDG Play Official Community Banner Announcement">
+            </div>
+            
+            <p style="font-weight: 700; font-size: 16px; margin-bottom: 20px; color: var(--tg-blue);">📢 Join Now & Stay Tuned! 🔥 Big Surprise Loading... 🔥</p>
+            <a href="https://t.me/bdgplayoffiiciall" target="_blank" class="cta-btn btn-join-tg"><i class="fa-brands fa-telegram"></i> Join Channel Now</a>
         </div>
 
         <!-- Specs Table Feature Details -->
@@ -365,10 +539,10 @@
             <div class="table-responsive">
                 <table>
                     <tr><th>Feature</th><th>Details</th></tr>
-                    <tr><td><strong>App Name</strong></td><td>BDG Play (BDG Game)</td></tr>
-                    <tr><td><strong>Latest Version</strong></td><td>2.0.1 (2026 Updated)</td></tr>
+                    <tr><td><strong>App Name</strong></td><td>BDG Play Premium</td></tr>
+                    <tr><td><strong>Latest Version</strong></td><td>2.4.2 (2026 Updated)</td></tr>
                     <tr><td><strong>Platform Type</strong></td><td>Online Prediction & Gaming Platform</td></tr>
-                    <tr><td><strong>App Size</strong></td><td>~7.5 MB (Light & Fast)</td></tr>
+                    <tr><td><strong>App Size</strong></td><td>~18.5 MB (Optimized & Fast)</td></tr>
                     <tr><td><strong>Official Website</strong></td><td>https://bdggamelog.in.net/</td></tr>
                     <tr><td><strong>Invite Code</strong></td><td>1854121706894</td></tr>
                     <tr><td><strong>Welcome Bonus</strong></td><td>Up to ₹500</td></tr>
@@ -381,12 +555,11 @@
         <!-- Registration Step Guide -->
         <div class="card">
             <h2><i class="fa-solid fa-user-plus"></i> BDG Play Online Register – Step-by-Step Guide</h2>
-            <a href="https://bdg6.cc//#/register?invitationCode=1854121706894" target="_blank" class="image-placeholder-box">
-                <i class="fa-regular fa-images"></i>
-                <span>[IMAGE PLACEHOLDER: BDG Play Registration Screen Banner]</span>
-            </a>
+            <div class="app-screenshot-box">
+                <img src="1000085290.jpg" alt="BDG Play Registration Form Layout Visual">
+            </div>
             <ol>
-                <li>Click the link below to start your registration: <a href="https://bdg6.cc//#/register?invitationCode=1854121706894" target="_blank" style="color: #ff416c; font-weight: bold;">[Register Now]</a></li>
+                <li>Click the link below to start your registration: <a href="https://bdg6.cc//#/register?invitationCode=1854121706894" target="_blank" style="color: var(--gold-solid); font-weight: bold; text-decoration: underline;">[Register Now]</a></li>
                 <li>Enter your mobile number and create a strong password.</li>
                 <li>Verify your account using the OTP sent to your phone.</li>
                 <li>When asked for a referral code, enter <strong>1854121706894</strong> to claim your bonus.</li>
@@ -397,10 +570,6 @@
         <!-- Login Guide Section -->
         <div class="card">
             <h2><i class="fa-solid fa-right-to-bracket"></i> BDG Play Login with Mobile Number – Full Guide</h2>
-            <a href="https://bdg6.cc//#/register?invitationCode=1854121706894" target="_blank" class="image-placeholder-box">
-                <i class="fa-regular fa-images"></i>
-                <span>[IMAGE PLACEHOLDER: BDG Play Dashboard Screenshot]</span>
-            </a>
             <ol>
                 <li>Open the official BDG Play website portal hub.</li>
                 <li>Tap on the “Login” button visible on the home screen interface.</li>
@@ -412,20 +581,13 @@
         <!-- APK Download Configuration Guide -->
         <div class="card">
             <h2><i class="fa-solid fa-download"></i> BDG Play Login Download APK (Latest App) – Full Guide</h2>
-            <p>The BDG Play app is usually not available on the Google Play Store, so users need to download the APK file from the official website or trusted sources. If you want to know detailed information on how to download everything, you must read our main documentation panels.</p>
-            
-            <h3>How to Download BDG Play App</h3>
-            <div class="image-placeholder-box">
-                <i class="fa-solid fa-file-arrow-down"></i>
-                <span>[IMAGE PLACEHOLDER: BDG Play Download APK Action Button]</span>
-            </div>
+            <p><strong>महत्वपूर्ण सूचना:</strong> यह ऐप अभी ऑफिशियल प्ले स्टोर पर उपलब्ध नहीं है (Not available on the Google Play Store), इसलिए आपको इस सुरक्षित APK फ़ाइल को यहीं से डाउनलोड करना होगा।</p>
             <ol>
                 <li>Visit the official BDG Play website on your mobile browser.</li>
                 <li>Click on Download APK button.</li>
                 <li>The APK file will start downloading automatically.</li>
                 <li>Open the downloaded file from Downloads folder.</li>
-                <li>Go to Settings &rarr; Security.</li>
-                <li>Enable "Install from Unknown Sources".</li>
+                <li>Go to Settings &rarr; Security &rarr; Enable "Install from Unknown Sources".</li>
                 <li>Tap Install and wait for completion.</li>
             </ol>
         </div>
@@ -433,320 +595,117 @@
         <!-- Core Advantages & Features Layout -->
         <div class="card">
             <h2><i class="fa-solid fa-star"></i> Key Features That Make BDG Play Club Platform</h2>
-            <p>BDG Play app is designed to deliver a smooth, secure, and entertaining online gaming experience for users. With a variety of modern features and easy-to-use tools, the platform has quickly become popular among online gaming fans.</p>
-            
             <ul>
-                <li><strong>1. Safe & Secure Platform:</strong> The app uses advanced security systems to protect user data, transactions, and personal information, ensuring worry-free gaming.</li>
-                <li><strong>2. Fast Registration & Login:</strong> Users can create an account within minutes and start playing without complicated steps.</li>
-                <li><strong>3. Quick Deposits & Withdrawals:</strong> Supports instant payment methods that allow fast adding and withdrawing of money without long waiting times.</li>
-                <li><strong>4. Wide Variety of Games:</strong> From lottery games and slots to live casino and sports betting, the platform offers something for every type of player.</li>
-                <li><strong>5. Mobile-Friendly Experience:</strong> The app works smoothly on smartphones, making it easy to play anytime, anywhere.</li>
-                <li><strong>6. Bonuses & Daily Rewards:</strong> Players can enjoy welcome bonuses, referral rewards, and regular promotions to increase their earnings.</li>
-                <li><strong>7. 24/7 Customer Support:</strong> Dedicated support is available anytime to help with account issues, payments, or gameplay questions.</li>
+                <li><strong>1. Safe & Secure Platform:</strong> एडवांस्ड सुरक्षा सिस्टम्स टू प्रोटेक्ट यूजर डेटा।</li>
+                <li><strong>2. Fast Registration & Login:</strong> बिना किसी जटिल स्टेप्स के त्वरित पहुंच।</li>
+                <li><strong>3. Quick Deposits & Withdrawals:</strong> सुपर फास्ट ट्रांजैक्शंस सपोर्ट।</li>
+                <li><strong>4. Wide Variety of Games:</strong> विंगो, एविएटर और स्लॉट्स गेम्स की बड़ी श्रृंखला।</li>
+                <li><strong>5. 24/7 Customer Support:</strong> समर्पित सहायता टीम हमेशा उपलब्ध।</li>
             </ul>
         </div>
 
         <!-- Financial Flow: Wallet Recharge Operations -->
         <div class="card">
             <h2><i class="fa-solid fa-wallet"></i> How to Deposit Money in BDG Play (Add Funds)</h2>
-            <p>Depositing money in BDG Play is quick, safe, and beginner-friendly. Whether you want to play color prediction games, join contests, or earn through referral bonuses, you must first add funds to your BDG Play wallet.</p>
-            
-            <div class="image-placeholder-box">
-                <i class="fa-solid fa-money-bill-transfer"></i>
-                <span>[IMAGE PLACEHOLDER: Step-by-Step Payment Gateway Interface]</span>
-            </div>
-
             <ol>
                 <li>Login to your BDG Play account.</li>
                 <li>Go to Wallet / Recharge section.</li>
                 <li>Choose your deposit amount (₹100 – ₹10,000).</li>
-                <li>Select payment method: UPI (Google Pay, PhonePe, Paytm, BHIM), Wallets, or Bank Transfer.</li>
+                <li>Select payment method: UPI (Google Pay, PhonePe, Paytm), Wallets, or Bank Transfer.</li>
                 <li>Complete the payment challenge.</li>
             </ol>
-            <p>Your balance is updated immediately! Once the payment is successfully completed, the amount is instantly and securely added to your BDG Play wallet.</p>
-        </div>
-
-        <!-- Banking System Integration Module -->
-        <div class="card">
-            <h2><i class="fa-solid fa-university"></i> How to Add Bank Account in BDG Play 2026</h2>
-            <p>Adding your bank account in BDG Play is essential if you want to withdraw your earnings smoothly. The platform offers a simple and secure way to link your bank details through the wallet section.</p>
-            
-            <h3>Steps to Add Bank Account in BDG Play</h3>
-            <ul>
-                <li>Log in to your BDG Play account.</li>
-                <li>Open the Wallet or Profile section.</li>
-                <li>Click on “Add Bank Account” or “Bank Details”.</li>
-                <li>Enter the required information: Account Holder Name, Bank Name, Account Number, and IFSC Code.</li>
-                <li>Carefully review all details before submitting.</li>
-                <li>Click on Save / Submit and complete OTP verification if needed.</li>
-            </ul>
         </div>
 
         <!-- Payout Operations Extraction -->
         <div class="card">
-            <h2><i class="fa-solid fa-money-bill-trend-up"></i> How to Withdraw Money from BDG Play (Payout Guide)</h2>
-            <p>Withdrawing your earnings from BDG Play is simple, fast, and fully online. Whether you win through color prediction, bonus rewards, or refer-and-earn income, you can transfer your balance directly to your bank account or UPI ID.</p>
-            
+            <h2><i class="fa-solid fa-money-bill-trend-up"></i> How to Withdraw Money from Platform (Payout Guide)</h2>
             <ol>
                 <li>Open the Withdrawal section in the app/website.</li>
                 <li>Enter your withdraw amount.</li>
                 <li>Attach your UPI ID or Bank account.</li>
                 <li>Submit the request and wait for automated processing (5 minutes – 24 hours).</li>
             </ol>
-
-            <h3>BDG Play Earning Proof – Real Withdrawal Screenshot</h3>
-            <p>Below is a genuine BDG Play earning proof screenshot showing a successful withdrawal. This proof confirms that BDG Play is a real platform where users can earn and withdraw actual money. The amount shown has been credited successfully, proving the platform’s payment process is working properly.</p>
-            <div class="image-placeholder-box">
-                <i class="fa-solid fa-receipt"></i>
-                <span>[IMAGE PLACEHOLDER: Live Bank Payout Verification Settlement Screenshot]</span>
-            </div>
-            <p>While this screenshot proves real earnings are possible on BDG Play Club, results may vary based on gameplay, strategy, and activity level. Always play responsibly and understand the rules before investing real money.</p>
-        </div>
-
-        <!-- Affiliate Marketing Module -->
-        <div class="card">
-            <h2><i class="fa-solid fa-users-gear"></i> BDG Play Refer & Earn Program (Best Way to Earn)</h2>
-            <p>BDG Play Refer & Earn program allows you to earn money by inviting new users to join the platform. When someone registers using your referral link and starts playing or depositing money, you receive a commission.</p>
-            <ol>
-                <li>Open the Invite / Referral section dashboard.</li>
-                <li>Copy your unique referral tracking link.</li>
-                <li>Share it with friends or groups.</li>
-            </ol>
-            <p><strong>You earn:</strong> Referral bonus milestones, Lifetime commission on their continuous deposits, and Commission metrics on their active live gameplay rounds.</p>
-        </div>
-
-        <!-- Games Catalog Array Showcase -->
-        <div class="card">
-            <h2><i class="fa-solid fa-dice"></i> Varieties of Games Available in the BDG Play Application</h2>
-            <p>To enhance your gaming experience and add excitement, the app provides six distinct types of games. While each of these games revolves around color prediction, they each possess their own unique characteristics and variations.</p>
-            <ul>
-                <li><strong>Win Go:</strong> Fast-paced classic 1-minute color layout.</li>
-                <li><strong>Trx Hash:</strong> Advanced crypto-integrated randomized block engine.</li>
-                <li><strong>5d lotre:</strong> Digit matching luck module.</li>
-                <li><strong>K3 Lotre:</strong> Dice combinations selection structure.</li>
-                <li><strong>Slots:</strong> High-tier automated spinning slots graphics engine.</li>
-            </ul>
-            <p>Engaging with games on the BDG Play login game is straightforward and uncomplicated. After installing the application, you can register and establish an account by entering your essential information. Download the BDG Play big small engine inside your smartphone directly.</p>
-            <p>Upon successful account creation, you can deposit funds using various payment methods offered within the app. Additionally, if you have successfully referred other users, you may utilize the referral bonuses to participate in games.</p>
-
-            <h3>How to Win Big–Small WinGo (Quick Tips)</h3>
-            <ul>
-                <li>Start with small bets to reduce risk management liabilities.</li>
-                <li>Set a daily profit target and stop after reaching it.</li>
-                <li>Skip some rounds instead of betting continuously without stopping.</li>
-                <li>Observe recent results pattern logs, but don’t exponentially increase bet size.</li>
-                <li>Never chase losses after a failed round setup.</li>
-                <li>Play with a fixed budget ecosystem only.</li>
-            </ul>
-            <p><em>Big–Small WinGo games are luck-based. Smart control and discipline are the best ways to play safely.</em></p>
         </div>
 
         <!-- Voucher Redeem Protocol -->
         <div class="card">
             <h2><i class="fa-solid fa-gift"></i> What is a Gift Code?</h2>
-            <p>If you are looking for the latest BDG Play login gift codes, how to redeem them, and how they help in earning free bonuses, this section gives you everything in one place. BDG Play is a popular color prediction platform where users often search for free bonuses, promo codes, referral rewards, and special offers to increase their wallet balance.</p>
-            
             <div class="code-box">
                 <span id="giftCodeVal">📋 Code: <strong>BDGPLAY2026BONUSCODE</strong></span>
                 <button class="copy-btn" onclick="navigator.clipboard.writeText('BDGPLAY2026BONUSCODE'); alert('Code Copied!');">Copy</button>
             </div>
-
-            <h3>How to Redeem BDG Play Gift Code (Step-by-Step)</h3>
+            <h3>How to Redeem BDG Play Gift Code</h3>
             <ol>
-                <li>Open the official BDG Play website/app interface.</li>
                 <li>Login using your secure mobile number.</li>
                 <li>Go to Account / Profile settings section.</li>
                 <li>Tap on Gift Code / Promo Code option box.</li>
-                <li>Enter your code string parameters.</li>
-                <li>Click Redeem button.</li>
+                <li>Enter your code string parameters and click Redeem.</li>
             </ol>
-            <p>Bonus will reflect in your wallet balance instantly. If the code is expired or already used, you will get an error message notification.</p>
         </div>
 
         <!-- Teacher and Customer Care Information Matrix -->
         <div class="card">
-            <h2><i class="fa-solid fa-headset"></i> BDG Play Teacher Contact Details</h2>
-            <p>Contact if you want to know how to connect with customer care parameters:</p>
-            <p><strong>TEACHER RAHUL PARGI</strong></p>
-            <p>TELEGRAM &mdash; <a href="https://https://t.me/bdgplayoffiiciall" target="_blank" style="color:var(--tg-blue);">https://https://t.me/bdgplayoffiiciall</a> | @bdgplayyyy</p>
-            <p>WHATSAPP &mdash; <a href="https://https://t.me/bdgplayoffiiciall" target="_blank" style="color:#25D366;">+1</a></p>
-            <p>GIFTS HUB LINK &mdash; <a href="https://https://t.me/bdgplayoffiiciall" target="_blank" style="color:var(--tg-blue);">https://t.me/damangamegifts</a></p>
-        </div>
-
-        <!-- VIP High Promoter Reward Tier Matrix Table -->
-        <div class="card">
-            <h2><i class="fa-solid fa-crown"></i> BDG Play VIP Referral Program 2026</h2>
-            <p>The BDG Play VIP Referral Program 2026 gives users a chance to unlock exciting rewards by inviting more members to the platform. Active participants can win premium prizes such as luxury cars, diamond jewelry, gold items, smartphones, and special consolation rewards.</p>
-            <p>Event Duration: April 1 – June 30, 2026 (2 Months) | Note: Terms & Conditions Apply | Message: Invite More, Win More</p>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr><th>Rank</th><th>Prize</th><th>Value</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Grand Prize</td><td>Mercedes-Benz A-Class Limousine</td><td>₹55 Lakh</td></tr>
-                        <tr><td>1st Prize</td><td>Diamond Jewelry (2 Items)</td><td>₹15 Lakh</td></tr>
-                        <tr><td>2nd Prize</td><td>Gold + Diamond Jewelry</td><td>₹5 Lakh</td></tr>
-                        <tr><td>3rd Prize</td><td>Gold Bar 999.9</td><td>₹2 Lakh</td></tr>
-                        <tr><td>4th Prize</td><td>Gold Necklace 999.9</td><td>₹1 Lakh</td></tr>
-                        <tr><td>5th Prize</td><td>Gold Bracelet 999.9</td><td>₹50,000</td></tr>
-                        <tr><td>6th Prize</td><td>Nothing Phone (256GB)</td><td>₹30,000</td></tr>
-                        <tr><td>7th Prize</td><td>Gold Ring 999.9</td><td>₹20,000</td></tr>
-                        <tr><td>8th Prize</td><td>Gold Earrings 999.9</td><td>₹10,000</td></tr>
-                        <tr><td>9th Prize</td><td>Treasure Box (Consolation)</td><td>₹5,000</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- System Architecture Domain Directory List -->
-        <div class="card">
-            <h2><i class="fa-solid fa-globe"></i> BDG Play Official Website in India list 2026</h2>
-            <p>BDG Play official websites in India. These websites are verified, currently working, and provide safe access to Games features, including registration, gameplay, bonuses, and support services. Each listed official website is checked to ensure smooth performance, fast loading, and secure user experience.</p>
-            <p>We continuously monitor these platforms so players can confidently choose the correct and active BDG Play official website without the risk of fake or outdated links. Referral Code: <strong>1854121706894</strong></p>
-            
-            <h3>BDG Play Alternative</h3>
-            <p>If you are looking for a reliable BDG Play alternative, there are several online colour prediction and digital gaming platforms that offer similar features such as fast game rounds:</p>
-            <ul>
-                <li>YaarWin</li>
-                <li>Jalwa Game</li>
-                <li>Tiranga Game</li>
-                <li>Jai Club</li>
-            </ul>
-            <p>BDG Play is also known as and BDG Club and famous for other names just like बीडीजी, बीडीजी गेम, BDG Game, BDGworld, BDG Club Game, BDGcasino, BDG lottery.</p>
+            <h2><i class="fa-solid fa-headset"></i> BDG Play Official Support Details</h2>
+            <p><strong>SUPPORT MANAGER JENNIFER CANDOR</strong></p>
+            <p>TELEGRAM &mdash; <a href="https://t.me/VIP_DAMANCLUBhelp" target="_blank" style="color:var(--tg-blue);">https://t.me/VIP_DAMANCLUBhelp</a> | @CandorJennifer_1130</p>
+            <p>WHATSAPP &mdash; <a href="https://wa.me/917756993851" target="_blank" style="color:#25D366;">+917756993851</a></p>
         </div>
 
         <!-- Compliance Operational Risk Disclosures -->
-        <div class="risk-disclaimer" style="background:#1a0f0f; border-color:#ff416c; color:#ff9494;">
-            <strong>DISCLAIMER:-</strong> This game involves financial risk. You may get addicted to this game. Therefore, all of you are requested to play this game on your own responsibility and at your own risk. If you are not over 18 years old then you don’t play this game then you stay away from this game.
+        <div class="risk-disclaimer" style="background:#1a0f0f; border-color:var(--gold-solid); color:#f3c66f;">
+            <strong>DISCLAIMER:-</strong> This game involves financial risk. You may get addicted to this game. Therefore, all of you are requested to play this game on your own responsibility and at your own risk. If you are not over 18 years old then you stay away from this game.
         </div>
 
         <!-- Comprehensive Extended Frequently Asked Questions -->
         <div class="card">
             <h2><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions</h2>
-            
             <div class="faq-item">
-                <h4>What is BDG Play games?</h4>
-                <p>Yes, users can earn real money by playing games, winning matches, completing tasks, and using referral bonuses.</p>
+                <h4>What is BDG Play?</h4>
+                <p>Yes, users can earn rewards by playing games, winning matches, and using referral bonuses.</p>
             </div>
             <div class="faq-item">
-                <h4>Is BDG Play games legal?</h4>
-                <p>Legal regulations vary across states in India regarding online prediction systems. Check local compliance protocols before funding accounts.</p>
+                <h4>क्या यह ऐप गूगल प्ले स्टोर पर उपलब्ध है?</h4>
+                <p>नहीं, यह ऐप अभी ऑफिशियल प्ले स्टोर पर उपलब्ध नहीं है। इसे केवल इसकी ऑफिशियल वेबसाइट से सुरक्षित APK फ़ाइल के रूप में ही डाउनलोड किया जा सकता है।</p>
             </div>
             <div class="faq-item">
-                <h4>Is the BDG Play app safe?</h4>
-                <p>Yes, the standalone core interface runs standard state-of-the-art security scripts to keep user configuration records safe.</p>
-            </div>
-            <div class="faq-item">
-                <h4>What if I forget my BDG Play game password?</h4>
-                <p>You can instantly reset your credentials by clicking "Forgot Password" on the login popup panel and completing mobile OTP checks.</p>
-            </div>
-            <div class="faq-item">
-                <h4>What kinds of games are there in BDG Play?</h4>
-                <p>It contains multiple prediction modes including Wingo lottery matching, Trx Hash setups, Slots, and Live Aviator curve variations.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Is BDG Play App Available on play store?</h4>
-                <p>No, due to financial transaction and real-money gaming structural policies, you need to use our manual safe secure APK installation track.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Can I earn a full-time income?</h4>
-                <p>No, this should only be treated as an entertainment structure. Risk variables are high due to algorithmic game mechanics.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Can I play for free?</h4>
-                <p>You can use the complimentary welcome bonuses or promo code gift distribution chains to check the application gameplay models without immediate personal cash exposure.</p>
-            </div>
-            <div class="faq-item">
-                <h4>What is the BDG Play Minimum Deposit?</h4>
-                <p>The base absolute minimum required to kickstart live account balances is set at ₹100 inside the standard cash register.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Can I earn real money from BDG Play Game?</h4>
-                <p>Yes, all victorious outputs can be successfully extracted to your linked bank parameters instantly upon execution validation.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Is KYC required on BDG Play Game?</h4>
-                <p>Basic tracking and mobile validation are mandatory, though thorough identity submission checkpoints depend on withdrawal processing sizes.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Can I create multiple accounts on BDG Play Game?</h4>
-                <p>No, running duplicate accounts from identical devices or network routing configurations triggers automated security system account blocks.</p>
-            </div>
-            <div class="faq-item">
-                <h4>How long does BDG Play Game withdrawal take?</h4>
-                <p>Standard automated payouts are processed fast and settle straight inside bank channels within 5 minutes up to 24 hours.</p>
-            </div>
-            <div class="faq-item">
-                <h4>Which platform is similar to BDG Play Game?</h4>
-                <p>Platforms like Tiranga Game, YaarWin, and Jalwa Game share similar color prediction engines.</p>
+                <h4>How long does withdrawal take?</h4>
+                <p>Standard automated payouts are processed fast and settle within 5 minutes up to 24 hours.</p>
             </div>
         </div>
 
         <!-- Terminal Strategic Platform Conclusion -->
         <div class="card">
             <h2><i class="fa-solid fa-flag-checkered"></i> Conclusion</h2>
-            <p>The BDG Play Game secure online gaming platform offers a genuine opportunity for Indian users to enjoy fun games while earning real cash rewards. With secure payment options, regular bonuses, and a user-friendly interface, it’s quickly becoming a favorite choice among online gamers.</p>
-            <p>With a quick sign-up process, safe payment options, engaging features, rewarding activities, and a profitable referral system, BDG Play Game clearly sets itself apart from other gaming platforms. If you want to play, earn, and have fun safely, BDG Play Game Resources is the perfect app to start today!</p>
-            <p style="text-align: right; color: var(--accent-green); font-weight: bold;">Average rating 4.9 / 5. Vote count: 477436</p>
+            <p>The BDG Play platform offers an exciting opportunity for Indian users to enjoy prediction setups. Join our community today to get ongoing updates and instant assistance panels.</p>
+            <p style="text-align: right; color: var(--gold-solid); font-weight: bold;">Average rating 4.9 / 5. Total active base: 7,85,420+</p>
         </div>
 
     </div>
 
-    <!-- PURE INTEGRATED JAVASCRIPT MODAL SYSTEM -->
-    <!-- LOGIN POPUP MODAL (REDIRECT TO REGISTER LINK) -->
-    <div id="loginModal" class="modal-overlay" style="display: none;">
-        <div class="modal-card">
-            <span class="modal-close" onclick="toggleModal('loginModal', false)">&times;</span>
-            <h3>BDG Play Login</h3>
-            <form action="https://bdg6.cc//#/register?invitationCode=1854121706894" method="GET" target="_blank">
-                <input type="tel" placeholder="Enter Mobile Number" required>
-                <input type="password" placeholder="Enter Password" required>
-                <button type="submit" class="modal-submit">Login Securely</button>
-                <a href="https://t.me/bdgplayoffiiciall" target="_blank" class="modal-tg-btn">
-                    <i class="fa-brands fa-telegram"></i> Join Support Telegram
-                </a>
-            </form>
-        </div>
-    </div>
-
-    <!-- REGISTER POPUP MODAL (REDIRECT TO REGISTER LINK) -->
-    <div id="registerModal" class="modal-overlay" style="display: none;">
-        <div class="modal-card">
-            <span class="modal-close" onclick="toggleModal('registerModal', false)">&times;</span>
-            <h3>Create BDG Play Account</h3>
-            <form action="https://bdg6.cc//#/register?invitationCode=1854121706894" method="GET" target="_blank">
-                <input type="tel" placeholder="Mobile Number" required>
-                <input type="password" placeholder="Create Strong Password" required>
-                <input type="text" placeholder="Invite Code" value="1854121706894" readonly>
-                <button type="submit" class="modal-submit">Register Now</button>
-                <a href="https://t.me/bdgplayoffiiciall" target="_blank" class="modal-tg-btn">
-                    <i class="fa-brands fa-telegram"></i> Official Support Telegram
-                </a>
-            </form>
-        </div>
-    </div>
-
-    <!-- Core Footer Component with Targeted Dynamic Keywords Reserved -->
+    <!-- Core Footer Component -->
     <footer>
         <p>Sitemap | Privacy Policy | Terms of Service</p>
-        <p style="margin-top: 15px; font-size: 13px; opacity: 0.7;">All algorithmic and prediction results displayed inside the dashboard are final. Please evaluate financial parameters carefully before deploying liquidity pools.</p>
-        
-        <!-- Search Keywords Directory System Grid List -->
         <div class="keyword-directory">
-            <a href="#">BDG Game Log</a>
+            <a href="#">BDG Play Portal</a>
             <a href="#">BDG Play Login 2026</a>
-            <a href="#">BDG Game Download</a>
+            <a href="#">App Download Portal</a>
         </div>
-        
-        <p style="margin-top: 20px; font-weight: bold; color: #fff;">&copy; 2026 BDG Play Login. All Rights Reserved.</p>
+        <p style="margin-top: 20px; font-weight: bold; color: #fff;">&copy; 2026 BDG Play. All Rights Reserved.</p>
     </footer>
 
     <!-- Interactive Component Event Scripts -->
     <script>
-        function toggleModal(modalId, show) {
-            // डायरेक्ट आपके रजिस्ट्रेशन लिंक पर भेजने के लिए रिडायरेक्शन
-            window.open("https://bdg6.cc//#/register?invitationCode=1854121706894", "_blank");
+        // Side Menu (Sidebar) Toggle Functions
+        function toggleSidebar(show) {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (show) {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+            } else {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            }
         }
     </script>
 </body>
